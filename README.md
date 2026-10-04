@@ -5,6 +5,7 @@ uv init .
 uv add python-dotenv
 uv add anthropic
 uv add claude-agent-sdk
+uv add ipykernel
 
 # Software Installations 
 # Claude CLI
