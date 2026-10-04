@@ -22,13 +22,18 @@ def base_options(**arguments) -> ClaudeAgentOptions:
 
 def parse_message(message: Message):
     if isinstance(message, SystemMessage):
-        print(f"subtype: {message.subtype}")
+        print(f"[System] subtype: {message.subtype}")
 
     elif isinstance(message, AssistantMessage):
+        print("[Assistant Response]")
         for block in message.content:
-            if isinstance(block,TextBlock):
-                print(block.text)
+            if isinstance(block, TextBlock):
+                # Add indentation and separators for readability
+                print("─" * 40)
+                print(block.text.strip())
+                print("─" * 40)
 
     elif isinstance(message, ResultMessage):
-        print(f"duration: {message.duration_ms} ms")
-        print(f"cost in usd: {message.total_cost_usd} ms")
+        print("[Result]")
+        print(f"Duration: {message.duration_ms} ms")
+        print(f"Cost: ${message.total_cost_usd:.4f}")
